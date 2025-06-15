@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <body>
+      <input type="text" id="session">
+      <button onclick="createSession()"></button>
+      <textarea id="code" rows="4" cols="4" onchange="send()"></textarea>
+    <ul id="messages"></ul>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script>
+        let gid = ''
+      const socket = io("http://localhost:3000");
+
+      function createSession(){
+          let id = document.getElementById("session").value;
+          socket.emit("join-session",id);
+          gid = id;
+      }
+      function send(){
+          let code = document.getElementById("code").value;
+          socket.emit("send-message",{sessionId:gid,code});
+      }
+
+        setInterval(()=>{
+            socket.on('receive-message',({ sessionId, code })=>{
+                document.getElementById('code').value=code;
+            })
+        },1000)
+
+    </script>
+  </body>
+</html>
+

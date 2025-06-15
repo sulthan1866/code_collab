@@ -1,0 +1,32 @@
+# --- Global ---
+.DS_Store
+Thumbs.db
+.env
+.env.local
+*.log
+
+# --- React (code_collab/) ---
+code_collab/node_modules/
+code_collab/build/
+code_collab/.env
+code_collab/.env.local
+
+# --- Spring Boot (codeCollab/) ---
+codeCollab/target/
+codeCollab/.idea/
+codeCollab/.classpath
+codeCollab/.project
+codeCollab/.settings/
+codeCollab/*.iml
+codeCollab/.mvn/
+codeCollab/mvnw
+codeCollab/mvnw.cmd
+
+# --- Node.js + Socket.IO (socketio-app/) ---
+socketio-app/node_modules/
+socketio-app/dist/
+socketio-app/.env
+socketio-app/.env.local
+
+
+
