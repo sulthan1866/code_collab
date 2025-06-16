@@ -55,5 +55,10 @@ io.on('connection', (socket) => {
     });
 });
 
+app.get('/', (req, res) => {
+    res.send('Hello from Express!');
+});
+
 const PORT = process.env.SERVER_LINK;
 server.listen(PORT, () => { })
+app.listen(PORT, () => { })
