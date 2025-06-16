@@ -12,11 +12,11 @@ const io = new Server(server, {
 });
 let db = new Map<string, string>();
 io.on('connection', (socket) => {
-    console.log('User connected:', socket.id);
+    //console.log('User connected:', socket.id);
 
     socket.on('join-session', (sessionId: string) => {
         socket.join(sessionId);
-        console.log(`🔗 Socket ${socket.id} joined session ${sessionId}`);
+        //console.log(`🔗 Socket ${socket.id} joined session ${sessionId}`);
 
         socket.to(sessionId).emit('message', `👤 ${socket.id} joined the session`);
 
@@ -34,13 +34,21 @@ io.on('connection', (socket) => {
             code = db.get(sessionId)
         }
         db.set(sessionId, code)
-        socket.to(sessionId).emit('message', `Message in ${sessionId}: ${code}`);
+        // socket.to(sessionId).emit('message', `Message in ${sessionId}: ${code}`);
         socket.to(sessionId).emit('receive-code', {
             sender: socket.id,
             code,
         });
 
     });
+
+    socket.on('language', ({ sessionId, language }) => {
+        socket.to(sessionId).emit('language', { language });
+    })
+
+    // socket.on("auto-complete",({sessionId,autoComplete})=>{
+    //   socket.to(sessionId).emit('auto-complete',autoComplete);
+    //})
 
     socket.on('disconnect', () => {
         socket.emit('message', `Socket disconnected: ${socket.id}`);

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import SelectSesson from "./pages/SelectSesson"
-import CodeEditor from "./pages/CodeEditor"
+import CodeEditor from "./pages/codePage/CodePage"
 
 function App() {
 
